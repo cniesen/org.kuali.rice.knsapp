@@ -93,7 +93,4 @@
   <import resource="classpath:org/kuali/rice/core/RiceDataSourceSpringBeans.xml"/>
   <import resource="classpath:org/kuali/rice/config/RiceSpringBeans.xml"/>
 
-  <!--an application specific service-->
-  <bean id="productService" class="org.kuali.rice.knsapp.MultiplicationProductServiceImpl" />
-
 </beans>
