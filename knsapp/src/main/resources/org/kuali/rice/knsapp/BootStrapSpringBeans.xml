@@ -93,4 +93,24 @@
   <import resource="classpath:org/kuali/rice/core/RiceDataSourceSpringBeans.xml"/>
   <import resource="classpath:org/kuali/rice/config/RiceSpringBeans.xml"/>
 
+  <bean id="knsappModuleConfiguration" class="org.kuali.rice.krad.bo.ModuleConfiguration">
+    <property name="namespaceCode" value="KNSAPP"/>
+    <property name="initializeDataDictionary" value="true"/>
+    <property name="dataDictionaryPackages">
+      <list>
+        <value>classpath:org/kuali/rice/knsapp/datadictionary</value>
+      </list>
+    </property>
+        <property name="databaseRepositoryFilePaths">
+            <list>
+                <value>org/kuali/rice/knsapp/OJB-repository.xml</value>
+            </list>
+        </property>
+    <property name="packagePrefixes">
+      <list>
+        <value>org.kuali.rice.knsapp</value>
+      </list>
+    </property>
+  </bean>
+
 </beans>

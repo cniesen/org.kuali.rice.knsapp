@@ -27,6 +27,7 @@ This file contains custom application specific portal content.
 
   <ul class="chan">
       <li>insert custom content here</li>
+      <li><portal:portalLink displayTitle="true" title="Country" url="${ConfigProperties.kr.url}/lookup.do?methodToCall=start&businessObjectClassName=org.kuali.rice.knsapp.Country&docFormKey=88888888&returnLocation=${ConfigProperties.application.url}/portal.do&hideReturnLink=true" /></li>
   </ul>
 
 </div>
