@@ -56,6 +56,7 @@
     <database.version>${mysql.jdbc.version}</database.version>
     
         <!--dependency versions -->
+    <el-api.version>2.2</el-api.version>
     <jsp-api.version>2.1</jsp-api.version>
     <junit.version>4.11</junit.version>
     <oracle.jdbc.version>10.2.0.3.0</oracle.jdbc.version>
@@ -566,7 +567,7 @@
     <dependency>
       <groupId>javax.el</groupId>
       <artifactId>el-api</artifactId>
-      <version>${jsp-api.version}</version>
+      <version>${el-api.version}</version>
       <scope>provided</scope>
 	</dependency>
     <dependency>
