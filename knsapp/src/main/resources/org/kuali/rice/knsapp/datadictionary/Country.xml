@@ -125,13 +125,17 @@
   <bean id="Country-lookupDefinition-parentBean" abstract="true" parent="LookupDefinition">
     <property name="title" value="Country Lookup"/>
     
+    <property name="menubar" value="&lt;a href=&quot;javascript:void(0)&quot;
+        onclick=&quot;alert('JavaScript triggered action.')&quot;&gt;Custom Button&lt;/a&gt;"/>
+    
     <property name="defaultSort">
       <bean parent="SortDefinition">
         <property name="attributeNames">
           <list>
-            <value>code</value>
+            <value>name</value>
           </list>
         </property>
+        <property name="sortAscending" value="false"/>
       </bean>
     </property>
     <property name="lookupFields">
