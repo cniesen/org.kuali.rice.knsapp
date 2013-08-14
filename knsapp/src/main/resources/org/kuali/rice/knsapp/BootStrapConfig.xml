@@ -50,9 +50,9 @@ in configuration files outside of the project.
   <param name="datasource.ojb.platform">MySQL</param>
 
     
-  <param name="datasource.url">jdbc:mysql://localhost:3306/rice</param>
-  <param name="datasource.username">RICE</param>
-  <param name="datasource.password">RICE</param>
+  <param name="datasource.url">jdbc:mysql://localhost:3306/kulrice200</param>
+  <param name="datasource.username">kulrice200</param>
+  <param name="datasource.password">kulrice200</param>
 
   <param name="config.location">classpath:META-INF/common-config-defaults.xml</param>
   <param name="config.location">classpath:META-INF/common-config-locations.xml</param>

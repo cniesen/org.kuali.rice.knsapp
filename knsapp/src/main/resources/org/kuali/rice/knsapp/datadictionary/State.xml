@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p" xsi:schemaLocation="http://www.springframework.org/schema/beans         http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+  <bean id="State" parent="State-parentBean"/>
+  <bean id="State-parentBean" abstract="true" parent="BusinessObjectEntry">
+    <property name="businessObjectClass" value="org.kuali.rice.knsapp.State"/>
+    <property name="inquiryDefinition">
+      <ref bean="State-inquiryDefinition"/>
+    </property>
+    <property name="lookupDefinition">
+      <ref bean="State-lookupDefinition"/>
+    </property>
+    <property name="titleAttribute" value="code"/>
+    <property name="objectLabel" value="State"/>
+    <property name="attributes">
+      <list>
+        <ref bean="State-code"/>
+        <ref bean="State-name"/>
+        <ref bean="State-countryCode"/>
+        <ref bean="State-active"/>
+      </list>
+    </property>
+  </bean>
+
+<!-- Attribute Definitions -->
+
+
+  <bean id="State-code" parent="State-code-parentBean"/>
+  <bean id="State-code-parentBean" abstract="true" parent="AttributeDefinition">
+    <property name="name" value="code"/>
+    <property name="forceUppercase" value="true"/>
+    <property name="label" value="State Abbreviation"/>
+    <property name="shortLabel" value="State Abbr."/>
+    <property name="maxLength" value="2"/>
+    <property name="validationPattern">
+      <bean parent="AnyCharacterValidationPattern" p:exactLength="2"/>
+    </property>
+    <property name="required" value="true"/>
+    <property name="control">
+      <bean parent="TextControlDefinition" p:size="2"/>
+    </property>
+    <property name="summary" value="State Abbreviation"/>
+    <property name="description" value="The two digit code for a state"/>
+  </bean>
+
+  <bean id="State-name" parent="State-name-parentBean"/>
+  <bean id="State-name-parentBean" abstract="true" parent="AttributeDefinition">
+    <property name="name" value="name"/>
+    <property name="forceUppercase" value="true"/>
+    <property name="label" value="State Name"/>
+    <property name="shortLabel" value="State Name"/>
+    <property name="maxLength" value="40"/>
+    <property name="validationPattern">
+      <bean parent="AnyCharacterValidationPattern" p:allowWhitespace="true"/>
+    </property>
+    <property name="required" value="true"/>
+    <property name="control">
+      <bean parent="TextControlDefinition" p:size="25"/>
+    </property>
+    <property name="summary" value="State Name"/>
+    <property name="description" value="The name assigned to this state."/>
+  </bean>
+
+  <bean id="State-countryCode" parent="State-countryCode-parentBean"/>
+  <bean id="State-countryCode-parentBean" abstract="true" parent="Country-code-parentBean">
+      <property name="name" value="countryCode"/>
+  </bean>
+  
+  <bean id="State-active" parent="State-active-parentBean"/>
+  <bean id="State-active-parentBean" abstract="true" parent="AttributeReferenceDummy-activeIndicator">
+    <property name="name" value="active"/>
+  </bean>
+
+
+<!-- Business Object Inquiry Definition -->
+
+
+  <bean id="State-inquiryDefinition" parent="State-inquiryDefinition-parentBean"/>
+  <bean id="State-inquiryDefinition-parentBean" abstract="true" parent="InquiryDefinition">
+    <property name="title" value="State Inquiry"/>
+    <property name="inquirySections">
+      <list>
+        <bean parent="InquirySectionDefinition">
+          <property name="title" value=""/>
+          <property name="numberOfColumns" value="1"/>
+          <property name="inquiryFields">
+            <list>
+              <bean parent="FieldDefinition" p:attributeName="countryCode"/>
+              <bean parent="FieldDefinition" p:attributeName="code"/>
+              <bean parent="FieldDefinition" p:attributeName="name"/>
+              <bean parent="FieldDefinition" p:attributeName="active"/>
+            </list>
+          </property>
+        </bean>
+      </list>
+    </property>
+  </bean>
+
+<!-- Business Object Lookup Definition -->
+
+
+  <bean id="State-lookupDefinition" parent="State-lookupDefinition-parentBean"/>
+  <bean id="State-lookupDefinition-parentBean" abstract="true" parent="LookupDefinition">
+    <property name="title" value="State Lookup"/>
+    
+    <property name="menubar" value="&lt;a href=&quot;javascript:void(0)&quot;
+        onclick=&quot;alert('JavaScript triggered action.')&quot;&gt;Custom Button&lt;/a&gt;"/>
+    
+    <property name="defaultSort">
+      <bean parent="SortDefinition">
+        <property name="attributeNames">
+          <list>
+            <value>name</value>
+          </list>
+        </property>
+        <property name="sortAscending" value="false"/>
+      </bean>
+    </property>
+    <property name="lookupFields">
+      <list>
+        <bean parent="FieldDefinition" p:attributeName="countryCode"/>
+        <bean parent="FieldDefinition" p:attributeName="code"/>
+        <bean parent="FieldDefinition" p:attributeName="name"/>
+        <bean parent="FieldDefinition" p:attributeName="active"/>
+      </list>
+    </property>
+    <property name="resultFields">
+      <list>
+        <bean parent="FieldDefinition" p:attributeName="countryCode"/>
+        <bean parent="FieldDefinition" p:attributeName="code"/>
+        <bean parent="FieldDefinition" p:attributeName="name"/>
+        <bean parent="FieldDefinition" p:attributeName="active"/>
+      </list>
+    </property>
+  </bean>
+  
+  <bean id="StateMaintenanceDocument" parent="StateMaintenanceDocument-parentBean"/>
+  <bean id="StateMaintenanceDocument-parentBean" abstract="true" parent="MaintenanceDocumentEntry">
+    <property name="dataObjectClass" value="org.kuali.rice.knsapp.State"/>
+    <!--<property name="maintainableClass" value="org.kuali.rice.location.web.country.StateMaintainableImpl"/>-->
+    <property name="maintainableSections">
+      <list>
+        <ref bean="StateMaintenanceDocument-EditState"/>
+      </list>
+    </property>
+    <property name="lockingKeys">
+      <list>
+        <value>code</value>
+      </list>
+    </property>
+    
+    <property name="documentTypeName" value="StateMaintenanceDocument"/>
+    <property name="documentAuthorizerClass" value="org.kuali.rice.kns.document.authorization.MaintenanceDocumentAuthorizerBase"/>
+    
+    <property name="workflowProperties">
+      <ref bean="StateMaintenanceDocument-workflowProperties"/>
+    </property>
+  </bean>
+
+<!-- Maintenance Section Definitions -->
+
+
+  <bean id="StateMaintenanceDocument-EditState" parent="StateMaintenanceDocument-EditState-parentBean"/>
+  <bean id="StateMaintenanceDocument-EditState-parentBean" abstract="true" parent="MaintainableSectionDefinition">
+    <property name="id" value="Edit State"/>
+    <property name="title" value="Edit State"/>
+    <property name="maintainableItems">
+      <list>
+        <bean parent="MaintainableFieldDefinition" p:name="countryCode" p:required="true"/>
+        <bean parent="MaintainableFieldDefinition" p:name="code" p:required="true"/>
+        <bean parent="MaintainableFieldDefinition" p:name="name" p:required="true"/>
+        <bean parent="MaintainableFieldDefinition" p:name="active" p:defaultValue="true" />
+      </list>
+    </property>
+  </bean>
+
+<!-- Exported Workflow Properties -->
+
+
+  <bean id="StateMaintenanceDocument-workflowProperties" parent="StateMaintenanceDocument-workflowProperties-parentBean"/>
+  <bean id="StateMaintenanceDocument-workflowProperties-parentBean" abstract="true" parent="WorkflowProperties">
+  </bean>
+
+</beans>
