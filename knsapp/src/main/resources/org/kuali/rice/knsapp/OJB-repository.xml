@@ -17,91 +17,107 @@
     </jdbc-connection-descriptor>
 
   <class-descriptor class="org.kuali.rice.knsapp.Country" table="KRLC_CNTRY_T">
-	    <field-descriptor name="code" column="POSTAL_CNTRY_CD" jdbc-type="VARCHAR" primarykey="true" indexed="true" />
-	    <field-descriptor name="alternateCode" column="ALT_POSTAL_CNTRY_CD" jdbc-type="VARCHAR" />
-    	<field-descriptor name="objectId" column="OBJ_ID" jdbc-type="VARCHAR" indexed="true" />
-    	<field-descriptor name="versionNumber" column="VER_NBR" jdbc-type="BIGINT" locking="true" />
-    	<field-descriptor name="name" column="POSTAL_CNTRY_NM" jdbc-type="VARCHAR" />
-    	<field-descriptor name="restricted" column="PSTL_CNTRY_RSTRC_IND" jdbc-type="VARCHAR" conversion="org.kuali.rice.core.framework.persistence.ojb.conversion.OjbCharBooleanConversion" />
-		<field-descriptor name="active" column="ACTV_IND" jdbc-type="VARCHAR" conversion="org.kuali.rice.core.framework.persistence.ojb.conversion.OjbCharBooleanConversion"/>
+    <field-descriptor name="code" column="POSTAL_CNTRY_CD" jdbc-type="VARCHAR" primarykey="true" indexed="true" />
+    <field-descriptor name="alternateCode" column="ALT_POSTAL_CNTRY_CD" jdbc-type="VARCHAR" />
+    <field-descriptor name="objectId" column="OBJ_ID" jdbc-type="VARCHAR" indexed="true" />
+    <field-descriptor name="versionNumber" column="VER_NBR" jdbc-type="BIGINT" locking="true" />
+    <field-descriptor name="name" column="POSTAL_CNTRY_NM" jdbc-type="VARCHAR" />
+    <field-descriptor name="restricted" column="PSTL_CNTRY_RSTRC_IND" jdbc-type="VARCHAR" conversion="org.kuali.rice.core.framework.persistence.ojb.conversion.OjbCharBooleanConversion" />
+    <field-descriptor name="active" column="ACTV_IND" jdbc-type="VARCHAR" conversion="org.kuali.rice.core.framework.persistence.ojb.conversion.OjbCharBooleanConversion"/>
   </class-descriptor>
   
   <class-descriptor class="org.kuali.rice.knsapp.State" table="KRLC_ST_T">
-		<field-descriptor name="countryCode" column="POSTAL_CNTRY_CD" jdbc-type="VARCHAR" primarykey="true" indexed="true" />
-    	<field-descriptor name="code" column="POSTAL_STATE_CD" jdbc-type="VARCHAR" primarykey="true" indexed="true" />
-    	<field-descriptor name="name" column="POSTAL_STATE_NM" jdbc-type="VARCHAR" />
-    	<field-descriptor name="objectId" column="OBJ_ID" jdbc-type="VARCHAR" indexed="true" />
-    	<field-descriptor name="versionNumber" column="VER_NBR" jdbc-type="BIGINT" locking="true" />
-		<field-descriptor name="active" column="ACTV_IND" jdbc-type="VARCHAR" conversion="org.kuali.rice.core.framework.persistence.ojb.conversion.OjbCharBooleanConversion"/>
+    <field-descriptor name="countryCode" column="POSTAL_CNTRY_CD" jdbc-type="VARCHAR" primarykey="true" indexed="true" />
+    <field-descriptor name="code" column="POSTAL_STATE_CD" jdbc-type="VARCHAR" primarykey="true" indexed="true" />
+    <field-descriptor name="name" column="POSTAL_STATE_NM" jdbc-type="VARCHAR" />
+    <field-descriptor name="objectId" column="OBJ_ID" jdbc-type="VARCHAR" indexed="true" />
+    <field-descriptor name="versionNumber" column="VER_NBR" jdbc-type="BIGINT" locking="true" />
+    <field-descriptor name="active" column="ACTV_IND" jdbc-type="VARCHAR" conversion="org.kuali.rice.core.framework.persistence.ojb.conversion.OjbCharBooleanConversion"/>
 
-		<reference-descriptor name="country" class-ref="org.kuali.rice.knsapp.Country" auto-retrieve="true" auto-update="none" auto-delete="none">
-        	<foreignkey field-ref="countryCode" target-field-ref="code" />
-    	</reference-descriptor>
+    <reference-descriptor name="country" class-ref="org.kuali.rice.knsapp.Country" auto-retrieve="true" auto-update="none" auto-delete="none">
+      <foreignkey field-ref="countryCode" target-field-ref="code" />
+    </reference-descriptor>
   </class-descriptor>
   
   <class-descriptor class="org.kuali.rice.knsapp.StateQuickfinderDisabled" table="KRLC_ST_T">
-		<field-descriptor name="countryCode" column="POSTAL_CNTRY_CD" jdbc-type="VARCHAR" primarykey="true" indexed="true" />
-    	<field-descriptor name="code" column="POSTAL_STATE_CD" jdbc-type="VARCHAR" primarykey="true" indexed="true" />
-    	<field-descriptor name="name" column="POSTAL_STATE_NM" jdbc-type="VARCHAR" />
-    	<field-descriptor name="objectId" column="OBJ_ID" jdbc-type="VARCHAR" indexed="true" />
-    	<field-descriptor name="versionNumber" column="VER_NBR" jdbc-type="BIGINT" locking="true" />
-		<field-descriptor name="active" column="ACTV_IND" jdbc-type="VARCHAR" conversion="org.kuali.rice.core.framework.persistence.ojb.conversion.OjbCharBooleanConversion"/>
+    <field-descriptor name="countryCode" column="POSTAL_CNTRY_CD" jdbc-type="VARCHAR" primarykey="true" indexed="true" />
+    <field-descriptor name="code" column="POSTAL_STATE_CD" jdbc-type="VARCHAR" primarykey="true" indexed="true" />
+    <field-descriptor name="name" column="POSTAL_STATE_NM" jdbc-type="VARCHAR" />
+    <field-descriptor name="objectId" column="OBJ_ID" jdbc-type="VARCHAR" indexed="true" />
+    <field-descriptor name="versionNumber" column="VER_NBR" jdbc-type="BIGINT" locking="true" />
+    <field-descriptor name="active" column="ACTV_IND" jdbc-type="VARCHAR" conversion="org.kuali.rice.core.framework.persistence.ojb.conversion.OjbCharBooleanConversion"/>
 
-		<reference-descriptor name="country" class-ref="org.kuali.rice.knsapp.Country" auto-retrieve="true" auto-update="none" auto-delete="none">
-        	<foreignkey field-ref="countryCode" target-field-ref="code" />
-    	</reference-descriptor>
+    <reference-descriptor name="country" class-ref="org.kuali.rice.knsapp.Country" auto-retrieve="true" auto-update="none" auto-delete="none">
+      <foreignkey field-ref="countryCode" target-field-ref="code" />
+    </reference-descriptor>
   </class-descriptor>
  
   <class-descriptor class="org.kuali.rice.knsapp.StateCriteriaFooter" table="KRLC_ST_T">
-		<field-descriptor name="countryCode" column="POSTAL_CNTRY_CD" jdbc-type="VARCHAR" primarykey="true" indexed="true" />
-    	<field-descriptor name="code" column="POSTAL_STATE_CD" jdbc-type="VARCHAR" primarykey="true" indexed="true" />
-    	<field-descriptor name="name" column="POSTAL_STATE_NM" jdbc-type="VARCHAR" />
-    	<field-descriptor name="objectId" column="OBJ_ID" jdbc-type="VARCHAR" indexed="true" />
-    	<field-descriptor name="versionNumber" column="VER_NBR" jdbc-type="BIGINT" locking="true" />
-		<field-descriptor name="active" column="ACTV_IND" jdbc-type="VARCHAR" conversion="org.kuali.rice.core.framework.persistence.ojb.conversion.OjbCharBooleanConversion"/>
+    <field-descriptor name="countryCode" column="POSTAL_CNTRY_CD" jdbc-type="VARCHAR" primarykey="true" indexed="true" />
+    <field-descriptor name="code" column="POSTAL_STATE_CD" jdbc-type="VARCHAR" primarykey="true" indexed="true" />
+    <field-descriptor name="name" column="POSTAL_STATE_NM" jdbc-type="VARCHAR" />
+    <field-descriptor name="objectId" column="OBJ_ID" jdbc-type="VARCHAR" indexed="true" />
+    <field-descriptor name="versionNumber" column="VER_NBR" jdbc-type="BIGINT" locking="true" />
+    <field-descriptor name="active" column="ACTV_IND" jdbc-type="VARCHAR" conversion="org.kuali.rice.core.framework.persistence.ojb.conversion.OjbCharBooleanConversion"/>
 
-		<reference-descriptor name="country" class-ref="org.kuali.rice.knsapp.Country" auto-retrieve="true" auto-update="none" auto-delete="none">
-        	<foreignkey field-ref="countryCode" target-field-ref="code" />
-    	</reference-descriptor>
+    <reference-descriptor name="country" class-ref="org.kuali.rice.knsapp.Country" auto-retrieve="true" auto-update="none" auto-delete="none">
+      <foreignkey field-ref="countryCode" target-field-ref="code" />
+    </reference-descriptor>
   </class-descriptor>
  
   <class-descriptor class="org.kuali.rice.knsapp.StateNoSearchButtons" table="KRLC_ST_T">
-		<field-descriptor name="countryCode" column="POSTAL_CNTRY_CD" jdbc-type="VARCHAR" primarykey="true" indexed="true" />
-    	<field-descriptor name="code" column="POSTAL_STATE_CD" jdbc-type="VARCHAR" primarykey="true" indexed="true" />
-    	<field-descriptor name="name" column="POSTAL_STATE_NM" jdbc-type="VARCHAR" />
-    	<field-descriptor name="objectId" column="OBJ_ID" jdbc-type="VARCHAR" indexed="true" />
-    	<field-descriptor name="versionNumber" column="VER_NBR" jdbc-type="BIGINT" locking="true" />
-		<field-descriptor name="active" column="ACTV_IND" jdbc-type="VARCHAR" conversion="org.kuali.rice.core.framework.persistence.ojb.conversion.OjbCharBooleanConversion"/>
+    <field-descriptor name="countryCode" column="POSTAL_CNTRY_CD" jdbc-type="VARCHAR" primarykey="true" indexed="true" />
+    <field-descriptor name="code" column="POSTAL_STATE_CD" jdbc-type="VARCHAR" primarykey="true" indexed="true" />
+    <field-descriptor name="name" column="POSTAL_STATE_NM" jdbc-type="VARCHAR" />
+    <field-descriptor name="objectId" column="OBJ_ID" jdbc-type="VARCHAR" indexed="true" />
+    <field-descriptor name="versionNumber" column="VER_NBR" jdbc-type="BIGINT" locking="true" />
+    <field-descriptor name="active" column="ACTV_IND" jdbc-type="VARCHAR" conversion="org.kuali.rice.core.framework.persistence.ojb.conversion.OjbCharBooleanConversion"/>
 
-		<reference-descriptor name="country" class-ref="org.kuali.rice.knsapp.Country" auto-retrieve="true" auto-update="none" auto-delete="none">
-        	<foreignkey field-ref="countryCode" target-field-ref="code" />
-    	</reference-descriptor>
+    <reference-descriptor name="country" class-ref="org.kuali.rice.knsapp.Country" auto-retrieve="true" auto-update="none" auto-delete="none">
+      <foreignkey field-ref="countryCode" target-field-ref="code" />
+    </reference-descriptor>
   </class-descriptor>
  
   <class-descriptor class="org.kuali.rice.knsapp.StateMultipleColumnsCriteria" table="KRLC_ST_T">
-		<field-descriptor name="countryCode" column="POSTAL_CNTRY_CD" jdbc-type="VARCHAR" primarykey="true" indexed="true" />
-    	<field-descriptor name="code" column="POSTAL_STATE_CD" jdbc-type="VARCHAR" primarykey="true" indexed="true" />
-    	<field-descriptor name="name" column="POSTAL_STATE_NM" jdbc-type="VARCHAR" />
-    	<field-descriptor name="objectId" column="OBJ_ID" jdbc-type="VARCHAR" indexed="true" />
-    	<field-descriptor name="versionNumber" column="VER_NBR" jdbc-type="BIGINT" locking="true" />
-		<field-descriptor name="active" column="ACTV_IND" jdbc-type="VARCHAR" conversion="org.kuali.rice.core.framework.persistence.ojb.conversion.OjbCharBooleanConversion"/>
+    <field-descriptor name="countryCode" column="POSTAL_CNTRY_CD" jdbc-type="VARCHAR" primarykey="true" indexed="true" />
+    <field-descriptor name="code" column="POSTAL_STATE_CD" jdbc-type="VARCHAR" primarykey="true" indexed="true" />
+    <field-descriptor name="name" column="POSTAL_STATE_NM" jdbc-type="VARCHAR" />
+    <field-descriptor name="objectId" column="OBJ_ID" jdbc-type="VARCHAR" indexed="true" />
+    <field-descriptor name="versionNumber" column="VER_NBR" jdbc-type="BIGINT" locking="true" />
+    <field-descriptor name="active" column="ACTV_IND" jdbc-type="VARCHAR" conversion="org.kuali.rice.core.framework.persistence.ojb.conversion.OjbCharBooleanConversion"/>
 
-		<reference-descriptor name="country" class-ref="org.kuali.rice.knsapp.Country" auto-retrieve="true" auto-update="none" auto-delete="none">
-        	<foreignkey field-ref="countryCode" target-field-ref="code" />
-    	</reference-descriptor>
+    <reference-descriptor name="country" class-ref="org.kuali.rice.knsapp.Country" auto-retrieve="true" auto-update="none" auto-delete="none">
+      <foreignkey field-ref="countryCode" target-field-ref="code" />
+    </reference-descriptor>
   </class-descriptor>
  
   <class-descriptor class="org.kuali.rice.knsapp.StateDisabledWildcards" table="KRLC_ST_T">
-		<field-descriptor name="countryCode" column="POSTAL_CNTRY_CD" jdbc-type="VARCHAR" primarykey="true" indexed="true" />
-    	<field-descriptor name="code" column="POSTAL_STATE_CD" jdbc-type="VARCHAR" primarykey="true" indexed="true" />
-    	<field-descriptor name="name" column="POSTAL_STATE_NM" jdbc-type="VARCHAR" />
-    	<field-descriptor name="objectId" column="OBJ_ID" jdbc-type="VARCHAR" indexed="true" />
-    	<field-descriptor name="versionNumber" column="VER_NBR" jdbc-type="BIGINT" locking="true" />
-		<field-descriptor name="active" column="ACTV_IND" jdbc-type="VARCHAR" conversion="org.kuali.rice.core.framework.persistence.ojb.conversion.OjbCharBooleanConversion"/>
+    <field-descriptor name="countryCode" column="POSTAL_CNTRY_CD" jdbc-type="VARCHAR" primarykey="true" indexed="true" />
+    <field-descriptor name="code" column="POSTAL_STATE_CD" jdbc-type="VARCHAR" primarykey="true" indexed="true" />
+    <field-descriptor name="name" column="POSTAL_STATE_NM" jdbc-type="VARCHAR" />
+    <field-descriptor name="objectId" column="OBJ_ID" jdbc-type="VARCHAR" indexed="true" />
+    <field-descriptor name="versionNumber" column="VER_NBR" jdbc-type="BIGINT" locking="true" />
+    <field-descriptor name="active" column="ACTV_IND" jdbc-type="VARCHAR" conversion="org.kuali.rice.core.framework.persistence.ojb.conversion.OjbCharBooleanConversion"/>
 
-		<reference-descriptor name="country" class-ref="org.kuali.rice.knsapp.Country" auto-retrieve="true" auto-update="none" auto-delete="none">
-        	<foreignkey field-ref="countryCode" target-field-ref="code" />
-    	</reference-descriptor>
+    <reference-descriptor name="country" class-ref="org.kuali.rice.knsapp.Country" auto-retrieve="true" auto-update="none" auto-delete="none">
+      <foreignkey field-ref="countryCode" target-field-ref="code" />
+    </reference-descriptor>
+  </class-descriptor>
+  
+  <class-descriptor class="org.kuali.rice.knsapp.Book" table="BK_BOOK_T">
+    <field-descriptor name="id" column="BOOK_ID" jdbc-type="BIGINT" primarykey="true" autoincrement="true"
+                      sequence-name="BK_BOOK_ID_S"/>
+    <field-descriptor name="title" column="TITLE" jdbc-type="VARCHAR"/>
+    <field-descriptor name="typeCode" column="TYP_CD" jdbc-type="VARCHAR" index="true"/>
+    <field-descriptor name="isbn" column="isbn" jdbc-type="VARCHAR"/>
+    <field-descriptor name="publisher" column="publisher" jdbc-type="VARCHAR"/>
+    <field-descriptor name="publicationDate" column="pub_date" jdbc-type="TIMESTAMP"/>
+    <field-descriptor name="price" column="PRICE" jdbc-type="DECIMAL"
+                      conversion="org.kuali.rice.core.framework.persistence.ojb.conversion.OjbKualiDecimalFieldConversion"/>
+    <field-descriptor name="rating" column="RATING" jdbc-type="BIGINT"
+                      conversion="org.kuali.rice.core.framework.persistence.ojb.conversion.OjbKualiIntegerFieldConversion"/>
+    <field-descriptor name="objectId" column="OBJ_ID" jdbc-type="VARCHAR" index="true"/>
+    <field-descriptor name="versionNumber" column="VER_NBR" jdbc-type="BIGINT" locking="true"/>
   </class-descriptor>
  
 </descriptor-repository>
