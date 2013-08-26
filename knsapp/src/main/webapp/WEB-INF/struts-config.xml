@@ -8,6 +8,9 @@
         <form-bean name="KualiForm" type="org.kuali.rice.kns.web.struts.form.KualiForm" />
         <form-bean name="KualiLogoutForm" type="org.kuali.rice.kns.web.struts.form.KualiLogoutForm" />
     	<!-- End required KNS forms -->
+        <!--  knsapp - Book Order Form -->
+        <form-bean name="BookOrderForm" type="org.kuali.rice.knsapp.web.BookOrderForm"/>
+        <!-- knsapp - End of Book Order Form -->
     </form-beans>
 
 	<global-exceptions>
@@ -56,6 +59,13 @@
         <action path="/updateTextArea" name="KualiForm" type="org.kuali.rice.kns.web.struts.action.KualiDocumentActionBase">
             <forward name="basic" path="/kr/WEB-INF/jsp/TextArea.jsp" />
         </action>
+        
+        <!-- KNSAPP: Used for testing action conversion process -->
+        <action path="/bookOrder" name="BookOrderForm" input="/WEB-INF/jsp/BookOrder.jsp" type="org.kuali.rice.knsapp.web.BookOrderAction"
+			scope="session" parameter="methodToCall" validate="true" attribute="KualiForm">
+			<forward name="basic" path="/WEB-INF/jsp/BookOrder.jsp"/>
+		</action>
+        
        	<!-- End required KNS mappings -->
     </action-mappings>
 
