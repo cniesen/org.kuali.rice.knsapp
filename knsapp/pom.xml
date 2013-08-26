@@ -74,6 +74,15 @@
   </properties>
 
   <build>
+    <!-- Document Type resources -->
+    <resources>
+        <resource>
+            <directory>src/main/resources</directory>
+            <excludes>
+                <exclude>doctype/**/*.*</exclude>
+            </excludes>
+        </resource>
+    </resources>
     <!--
       To help manage complex builds, the maven enforcer plugin has many useful rules.
       This is not configured in this sample pom for simplicity sake.
@@ -111,6 +120,7 @@
               <filtered>false</filtered>
             </overlay>
           </overlays>
+          <attachClasses>true</attachClasses>
         </configuration>
       </plugin>
 
@@ -439,6 +449,12 @@
       <scope>runtime</scope>
     </dependency>
     <!-- kns (not including legacy kns) -->
+    <dependency>
+      <groupId>org.kuali.rice</groupId>
+        <artifactId>rice-kns</artifactId>
+      <version>${rice.version}</version>
+      <scope>compile</scope>
+    </dependency>
     <!-- krad -->
     <dependency>
       <groupId>org.kuali.rice</groupId>
