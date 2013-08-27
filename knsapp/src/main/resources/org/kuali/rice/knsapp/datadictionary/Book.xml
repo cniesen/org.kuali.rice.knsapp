@@ -274,5 +274,16 @@
   <bean id="BookMaintenanceDocument-workflowProperties" parent="BookMaintenanceDocument-workflowProperties-parentBean"/>
   <bean id="BookMaintenanceDocument-workflowProperties-parentBean" abstract="true" parent="WorkflowProperties">
   </bean>
+ 
+  <!--  Book Order Document Information -->
+  <bean id="BookOrderDocument" parent="BookOrderDocument-parentBean"/>
+
+  <bean id="BookOrderDocument-parentBean" abstract="true" parent="TransactionalDocumentEntry"> 
+    <property name="documentTypeName" value="BookOrderDocumentType"/>
+    <property name="documentClass" value="org.kuali.rice.knsapp.document.BookOrderDocument"/>
+    <property name="businessRulesClass" value="org.kuali.rice.knsapp.document.BookOrderDocumentRule"/>
+  </bean>
+
+  
 
 </beans>
