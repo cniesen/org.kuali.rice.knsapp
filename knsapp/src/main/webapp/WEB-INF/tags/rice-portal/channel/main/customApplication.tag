@@ -36,6 +36,9 @@ This file contains custom application specific portal content.
       <li><portal:portalLink displayTitle="true" title="State-DisabledWildcards" url="${ConfigProperties.kr.url}/lookup.do?methodToCall=start&businessObjectClassName=org.kuali.rice.knsapp.StateDisabledWildcards&docFormKey=88888888&returnLocation=${ConfigProperties.application.url}/portal.do&hideReturnLink=true" /></li>
       <li><portal:portalLink displayTitle="true" title="Book" url="${ConfigProperties.kr.url}/lookup.do?methodToCall=start&businessObjectClassName=org.kuali.rice.knsapp.Book&docFormKey=88888888&returnLocation=${ConfigProperties.application.url}/portal.do&hideReturnLink=true" /></li>
   </ul>
+  <ul class="chan">
+      <li><portal:portalLink displayTitle="true" title="Book Order Request " url="${ConfigProperties.application.url}/bookOrder.do?methodToCall=docHandler&command=initiate&docTypeName=BookOrderDocumentType" /></li>
+  </ul>
 
 </div>
 <channel:portalChannelBottom/>
