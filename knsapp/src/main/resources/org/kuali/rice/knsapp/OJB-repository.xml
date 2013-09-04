@@ -103,6 +103,24 @@
       <foreignkey field-ref="countryCode" target-field-ref="code" />
     </reference-descriptor>
   </class-descriptor>
+
+
+  <class-descriptor class="org.kuali.rice.knsapp.Author" table="BK_AUTHOR_T">
+    <field-descriptor name="id" column="AUTHOR_ID" jdbc-type="BIGINT" primarykey="true" autoincrement="true"
+                      sequence-name="BK_AUTHOR_ID_S"/>
+    <field-descriptor name="name" column="NM" jdbc-type="VARCHAR"/>
+    <field-descriptor name="address" column="ADDRESS" jdbc-type="VARCHAR"/>
+    <field-descriptor name="email" column="EMAIL" jdbc-type="VARCHAR"/>
+    <field-descriptor name="phoneNumber" column="PHONE_NBR" jdbc-type="VARCHAR"/>
+    <field-descriptor name="active" column="ACTV_IND" jdbc-type="VARCHAR" conversion="org.kuali.rice.core.framework.persistence.ojb.conversion.OjbCharBooleanConversion"/>
+    <field-descriptor name="objectId" column="OBJ_ID" jdbc-type="VARCHAR" index="true"/>
+    <field-descriptor name="versionNumber" column="VER_NBR" jdbc-type="BIGINT" locking="true"/>
+
+    <collection-descriptor name="books" collection-class="org.apache.ojb.broker.util.collections.ManageableArrayList" element-class-ref="org.kuali.rice.knsapp.Book" auto-retrieve="true" auto-update="true" indirection-table="BK_BOOK_AUTHOR_T">
+      <fk-pointing-to-this-class column="AUTHOR_ID"/>
+      <fk-pointing-to-element-class column="BOOK_ID"/>
+    </collection-descriptor>
+  </class-descriptor>
   
   <class-descriptor class="org.kuali.rice.knsapp.Book" table="BK_BOOK_T">
     <field-descriptor name="id" column="BOOK_ID" jdbc-type="BIGINT" primarykey="true" autoincrement="true"
@@ -118,6 +136,11 @@
                       conversion="org.kuali.rice.core.framework.persistence.ojb.conversion.OjbKualiIntegerFieldConversion"/>
     <field-descriptor name="objectId" column="OBJ_ID" jdbc-type="VARCHAR" index="true"/>
     <field-descriptor name="versionNumber" column="VER_NBR" jdbc-type="BIGINT" locking="true"/>
+
+    <collection-descriptor name="authors" collection-class="org.apache.ojb.broker.util.collections.ManageableArrayList" element-class-ref="org.kuali.rice.knsapp.Author" auto-retrieve="true" auto-update="false" indirection-table="BK_BOOK_AUTHOR_T">
+      <fk-pointing-to-this-class column="BOOK_ID"/>
+      <fk-pointing-to-element-class column="AUTHOR_ID"/>
+    </collection-descriptor>
   </class-descriptor>
  
 </descriptor-repository>

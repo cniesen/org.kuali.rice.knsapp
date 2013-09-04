@@ -1,6 +1,7 @@
 package org.kuali.rice.knsapp;
 
 import java.util.Date;
+import java.util.List;
 
 import org.kuali.rice.core.api.util.type.KualiDecimal;
 import org.kuali.rice.core.api.util.type.KualiInteger;
@@ -17,6 +18,8 @@ public class Book extends PersistableBusinessObjectBase {
 	private Date publicationDate;
 	private KualiDecimal price;
 	private KualiInteger rating;
+
+    private List<Author> authors;
 	
 	public Long getId() {
 		return id;
@@ -66,5 +69,11 @@ public class Book extends PersistableBusinessObjectBase {
 	public void setRating(KualiInteger rating) {
 		this.rating = rating;
 	}
+    public List<Author> getAuthors() {
+        return authors;
+    }
+    public void setAuthors(List<Author> authors) {
+        this.authors = authors;
+    }
 	
 }

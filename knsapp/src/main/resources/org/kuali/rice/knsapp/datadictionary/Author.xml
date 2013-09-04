@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p" xsi:schemaLocation="http://www.springframework.org/schema/beans         http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+  <bean id="Author" parent="Author-parentBean"/>
+  <bean id="Author-parentBean" abstract="true" parent="BusinessObjectEntry">
+    <property name="businessObjectClass" value="org.kuali.rice.knsapp.Author"/>
+    <property name="inquiryDefinition">
+      <ref bean="Author-inquiryDefinition"/>
+    </property>
+    <property name="lookupDefinition">
+      <ref bean="Author-lookupDefinition"/>
+    </property>
+    <property name="titleAttribute" value="id"/>
+    <property name="objectLabel" value="Author"/>
+    <property name="attributes">
+      <list>
+        <ref bean="Author-id"/>
+        <ref bean="Author-name"/>
+        <ref bean="Author-address"/>
+        <ref bean="Author-email"/>
+        <ref bean="Author-phoneNumber"/>
+      </list>
+    </property>
+  </bean>
+
+<!-- Attribute Definitions -->
+
+
+  <bean id="Author-id" parent="Author-id-parentBean"/>
+  <bean id="Author-id-parentBean" abstract="true" parent="AttributeReferenceDummy-genericSystemId">
+    <property name="name" value="id"/>
+    <property name="label" value="Author ID"/>
+    <property name="shortLabel" value="ID"/>
+    <property name="maxLength" value="14"/>
+    <property name="validCharactersConstraint">
+      <bean parent="NumericPatternConstraint"/>
+    </property>   
+    <property name="controlField">
+      <bean parent="Uif-HiddenControl"/>
+    </property>
+    <property name="summary" value="ID identifying the Author."/>
+    <property name="description" value="ID identifying the Author."/>
+  </bean>
+  
+  <bean id="Author-name" parent="Author-name-parentBean"/>
+  <bean id="Author-name-parentBean" abstract="true" parent="AttributeDefinition">
+    <property name="name" value="name"/>
+    <property name="forceUppercase" value="false"/>
+    <property name="label" value="Author Name"/>
+    <property name="shortLabel" value="Name"/>
+    <property name="maxLength" value="100"/>
+    <property name="validCharactersConstraint">
+      <bean  parent="AnyCharacterPatternConstraint" p:allowWhitespace="true"/>
+    </property>
+     <property name="controlField">
+      <bean parent="Uif-TextControl" p:size="50"/>
+    </property>
+    <property name="required" value="true"/>
+    <property name="summary" value="Name identifying the Author."/>
+    <property name="description" value="Name identifying the Author."/>
+  </bean>
+  
+  <bean id="Author-address" parent="Author-address-parentBean"/>
+  <bean id="Author-address-parentBean" abstract="true" parent="AttributeDefinition">
+    <property name="name" value="address"/>
+    <property name="label" value="Author Address"/>
+    <property name="shortLabel" value="Address"/>
+    <property name="maxLength" value="200"/>
+    <property name="validCharactersConstraint">
+      <bean  parent="AnyCharacterPatternConstraint" p:allowWhitespace="true"/>
+    </property>
+     <property name="controlField">
+      <bean parent="Uif-TextControl" p:size="100"/>
+    </property>
+    <property name="summary" value="Address of the Author."/>
+    <property name="description" value="Address of the Author."/>
+  </bean>
+
+  <bean id="Author-email" parent="Author-email-parentBean"/>
+  <bean id="Author-email-parentBean" abstract="true" parent="AttributeDefinition">
+    <property name="name" value="email"/>
+    <property name="label" value="Author Email"/>
+    <property name="shortLabel" value="Email"/>
+    <property name="maxLength" value="50"/>
+    <property name="validCharactersConstraint">
+        <bean  parent="AnyCharacterPatternConstraint" p:allowWhitespace="false"/>
+    </property>
+    <property name="controlField">
+      <bean parent="Uif-TextControl" p:size="50"/>
+    </property> 
+    <property name="summary" value="Email of the Author."/>
+    <property name="description" value="Email of the Author."/>
+  </bean>
+
+  <bean id="Author-phoneNumber" parent="Author-phoneNumber-parentBean"/>
+  <bean id="Author-phoneNumber-parentBean" abstract="true" parent="AttributeDefinition">
+    <property name="name" value="phoneNumber"/>
+    <property name="label" value="Author Phone Number"/>
+    <property name="shortLabel" value="Phone Number"/>
+    <property name="maxLength" value="20"/>
+    <property name="validCharactersConstraint">
+        <bean  parent="AnyCharacterPatternConstraint" p:allowWhitespace="false"/>
+    </property>
+    <property name="controlField">
+      <bean parent="Uif-TextControl" p:size="20"/>
+    </property> 
+    <property name="summary" value="Phone Number of the Author."/>
+    <property name="description" value="Phone Number of the Author."/>
+  </bean>
+
+
+<!-- Business Object Inquiry Definition -->
+
+
+  <bean id="Author-inquiryDefinition" parent="Author-inquiryDefinition-parentBean"/>
+  <bean id="Author-inquiryDefinition-parentBean" abstract="true" parent="InquiryDefinition">
+    <property name="title" value="Author Inquiry"/>
+    <property name="inquirySections">
+      <list>
+        <ref bean="Author-inquiryDefinition-Basic"/>
+        <ref bean="Author-inquiryDefinition-Books"/>
+      </list>
+    </property>
+  </bean>
+
+  <bean id="Author-inquiryDefinition-Basic" parent="Author-inquiryDefinition-Basic-parentBean"/>
+    <bean id="Author-inquiryDefinition-Basic-parentBean" abstract="true" parent="InquirySectionDefinition">
+    <property name="title" value="Basic Details"/>
+    <property name="numberOfColumns" value="1"/>
+    <property name="inquiryFields">
+      <list>
+        <bean parent="FieldDefinition" p:attributeName="id"/>
+        <bean parent="FieldDefinition" p:attributeName="name"/>
+        <bean parent="FieldDefinition" p:attributeName="address"/>
+        <bean parent="FieldDefinition" p:attributeName="email"/>
+        <bean parent="FieldDefinition" p:attributeName="phoneNumber"/>
+      </list>
+    </property>
+  </bean>
+
+  <bean id="Author-inquiryDefinition-Books" parent="Author-inquiryDefinition-Books-parentBean"/>
+    <bean id="Author-inquiryDefinition-Books-parentBean" abstract="true" parent="InquirySectionDefinition">
+    <property name="title" value="Book Details"/>
+    <property name="numberOfColumns" value="1"/>
+    <property name="inquiryFields">
+      <list>
+        <bean parent="InquiryCollectionDefinition">
+          <property name="numberOfColumns" value="1"/>
+          <property name="businessObjectClass" value="org.kuali.rice.knsapp.Book"/>
+          <property name="attributeName" value="books"/>
+          <property name="inquiryFields">
+            <list>
+              <bean parent="FieldDefinition" p:attributeName="id"/>
+              <bean parent="FieldDefinition" p:attributeName="title"/>
+              <bean parent="FieldDefinition" p:attributeName="typeCode"/>
+              <bean parent="FieldDefinition" p:attributeName="isbn"/>
+              <bean parent="FieldDefinition" p:attributeName="publisher"/>
+              <bean parent="FieldDefinition" p:attributeName="publicationDate"/>
+              <bean parent="FieldDefinition" p:attributeName="price"/>
+              <bean parent="FieldDefinition" p:attributeName="rating"/>
+            </list>
+          </property>
+          <property name="summaryTitle" value="Author Books"/>
+          <property name="summaryFields">
+            <list>
+              <bean parent="FieldDefinition" p:attributeName="title"/>
+            </list>
+          </property>
+        </bean>
+      </list>
+    </property>
+  </bean>
+
+<!-- Business Object Lookup Definition -->
+
+
+  <bean id="Author-lookupDefinition" parent="Author-lookupDefinition-parentBean"/>
+  <bean id="Author-lookupDefinition-parentBean" abstract="true" parent="LookupDefinition">
+    <property name="title" value="Author Lookup"/>
+    <property name="lookupFields">
+      <list>
+        <bean parent="FieldDefinition" p:attributeName="id"/>
+        <bean parent="FieldDefinition" p:attributeName="name"/>
+        <bean parent="FieldDefinition" p:attributeName="address"/>
+        <bean parent="FieldDefinition" p:attributeName="email"/>
+        <bean parent="FieldDefinition" p:attributeName="phoneNumber"/>
+      </list>
+    </property>
+    <property name="resultFields">
+      <list>
+          <bean parent="FieldDefinition" p:attributeName="id"/>
+          <bean parent="FieldDefinition" p:attributeName="name"/>
+          <bean parent="FieldDefinition" p:attributeName="address"/>
+          <bean parent="FieldDefinition" p:attributeName="email"/>
+          <bean parent="FieldDefinition" p:attributeName="phoneNumber"/>
+      </list>
+    </property>
+  </bean>
+  
+  <bean id="AuthorMaintenanceDocument" parent="AuthorMaintenanceDocument-parentBean"/>
+  <bean id="AuthorMaintenanceDocument-parentBean" abstract="true" parent="MaintenanceDocumentEntry">
+    <property name="dataObjectClass" value="org.kuali.rice.knsapp.Author"/>
+    <property name="maintainableSections">
+      <list>
+        <ref bean="AuthorMaintenanceDocument-EditAuthor"/>
+      </list>
+    </property>
+    <property name="lockingKeys">
+      <list>
+        <value>id</value>
+      </list>
+    </property>
+    
+    <property name="documentTypeName" value="AuthorMaintenanceDocument"/>
+    <property name="documentAuthorizerClass" value="org.kuali.rice.kns.document.authorization.MaintenanceDocumentAuthorizerBase"/>
+  </bean>
+
+<!-- Maintenance Section Definitions -->
+
+
+  <bean id="AuthorMaintenanceDocument-EditAuthor" parent="AuthorMaintenanceDocument-EditAuthor-parentBean"/>
+  <bean id="AuthorMaintenanceDocument-EditAuthor-parentBean" abstract="true" parent="MaintainableSectionDefinition">
+    <property name="id" value="Edit Author"/>
+    <property name="title" value="Edit Author"/>
+    <property name="maintainableItems">
+      <list>
+        <bean parent="MaintainableFieldDefinition" p:name="id" p:required="true"/>
+        <bean parent="MaintainableFieldDefinition" p:name="name" p:required="true"/>
+        <bean parent="MaintainableFieldDefinition" p:name="address" p:required="true"/>
+        <bean parent="MaintainableFieldDefinition" p:name="email" p:defaultValue="true" />
+        <bean parent="MaintainableFieldDefinition" p:name="phoneNumber" p:defaultValue="true" />
+      </list>
+    </property>
+  </bean>
+
+  
+
+</beans>
